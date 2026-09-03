@@ -591,7 +591,8 @@ NITFDataset *NITFDataset::OpenInternal(GDALOpenInfo *poOpenInfo,
             // We explicitly list the allowed drivers to avoid hostile content
             // to be opened by a random driver.
             static const char *const apszDrivers[] = {
-                "JP2KAK", "JP2ECW", "JP2MRSID", "JP2OPENJPEG", nullptr};
+                "JP2KAK",      "JP2ECW",     "JP2MRSID",
+                "JP2OPENJPEG", "JP2Emuella", nullptr};
             poDS->poJ2KDataset.reset(GDALDataset::Open(
                 osDSName, GDAL_OF_RASTER | GDAL_OF_VERBOSE_ERROR, apszDrivers,
                 nullptr, nullptr));
@@ -612,7 +613,7 @@ NITFDataset *NITFDataset::OpenInternal(GDALOpenInfo *poOpenInfo,
                     !bFoundJPEG2000Driver
                         ? "No JPEG2000 capable driver (JP2KAK, JP2ECW, "
                           "JP2MRSID, "
-                          "JP2OPENJPEG, etc...) is available."
+                          "JP2OPENJPEG, JP2Emuella, etc...) is available."
                         : "One or several JPEG2000 capable drivers are "
                           "available but "
                           "the datastream could not be opened successfully.",
